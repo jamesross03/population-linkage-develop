@@ -7,11 +7,14 @@ WORKDIR /app
 # Copy pom.xml, source code and entrypoint
 COPY pom.xml .
 COPY src ./src
-COPY docker/entrypoint.sh .
+COPY docker/*.sh .
 
 # Install dependencies
 RUN mvn clean install
 
-RUN chmod +x ./entrypoint.sh ./src/main/scripts/**/*.sh
+# Install socat for traffic forwarding
+RUN apt update && apt install -y socat
+
+RUN chmod +x ./*.sh ./src/main/scripts/**/*.sh
 
 ENTRYPOINT ["./entrypoint.sh"]
