@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# This script sets up traffic-forwarding to redirect traffic intended for a
+# localhost Neo4J server to the same ports on another host.
+#
 
 HOST=${NEO4J_HOST:-umea-neo4j}
 
