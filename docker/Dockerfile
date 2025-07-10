@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy pom.xml, source code and entrypoint
 COPY pom.xml .
 COPY src ./src
-COPY docker/*.sh .
+COPY docker/port_forwarding.sh .
 
 # Install dependencies
 RUN mvn clean install
@@ -16,5 +16,3 @@ RUN mvn clean install
 RUN apt update && apt install -y socat
 
 RUN chmod +x ./*.sh ./src/main/scripts/**/*.sh
-
-ENTRYPOINT ["./entrypoint.sh"]
